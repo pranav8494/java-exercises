@@ -3,50 +3,9 @@ package com.pp.hackerRank.ds;
 import java.util.Scanner;
 
 /**
- * <b>Source</b> <a href="https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem">Hacker Rank</a>
- * 
- * </br></br>
- * If you're new to linked lists, this is a great exercise for learning about
- * them. Given a pointer to the head node of a linked list, print its elements
- * in order, one element per line. If the head pointer is null (indicating the
- * list is empty), don’t print anything.
- * 
- * </br><b>Input Format</b></br>
- * 
- * The first line of input contains , the number of elements in the linked list.
- * The next lines contain one element each, which are the elements of the linked
- * list.
- * </br>
- * Note: Do not read any input from stdin/console. Complete the printLinkedList
- * function in the editor below.
- * 
- * </br><b>Constraints</b></br>
- * 
- * # 1 <= n <= 100
- * # 1 <= list[i] <= 1000, where list[i] is the i element of the linked list.
- * 
- * </br><b>Output Format</b></br>
- * 
- * Print the integer data for each element of the linked list to stdout/console
- * (e.g.: using printf, cout, etc.). There should be one element per line.
- * 
- * </br><b>Sample Input</b></br>
- * 
- * 2 
- * 16 
- * 13 
- * 
- * </br><b>Sample Output</b></br>
- * 
- * 16 
- * 13 
- * 
- * </br><b>Explanation</b></br>
- * 
- * There are two elements in the linked list. They are represented as 16 -> 13
- * -> NULL. So, the printLinkedList function should print 16 and 13 each in a
- * new line.
- *
+ * <b>Source</b> 
+ * </br>1. <a href="https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem">Hacker Rank: Print the Elements of a Linked List</a>
+ * </br>2. <a href="https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem">Hacker Rank: Insert a Node at the Tail of a Linked List</a>
  */
 public class SinglyLinkedListSolution {
 
@@ -82,12 +41,12 @@ public class SinglyLinkedListSolution {
 		}
 	}
 
-	/**
-	 * Complete printLinkedList function.
-	 * 
-	 * @param head
-	 */
+	// Complete the printLinkedList function below.
 	static void printLinkedList(SinglyLinkedListNode head) {
+		
+		if(head == null){
+			return;
+		}
 		while (true) {
 			System.out.println(head.data);
 			if (head.next == null) {
@@ -95,8 +54,29 @@ public class SinglyLinkedListSolution {
 			} else {
 				head = head.next;
 			}
-
 		}
+	}
+	
+    // Complete the insertNodeAtTail function below.
+	static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
+
+		SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+		
+        if (head == null) {
+            head = newNode;
+        } else {
+            SinglyLinkedListNode lastNode = head;
+            SinglyLinkedListNode nextNode = head.next;
+            while (true) {
+                if (nextNode == null) {
+                    break;
+                }
+                lastNode = nextNode;
+                nextNode = lastNode.next;
+            }
+            lastNode.next = newNode;
+        }
+        return head;
 	}
 
 	private static final Scanner scanner = new Scanner(System.in);
@@ -114,6 +94,11 @@ public class SinglyLinkedListSolution {
 			llist.insertNode(llistItem);
 		}
 
+		System.out.println("======");
+		printLinkedList(llist.head);
+		
+		llist.head = insertNodeAtTail(llist.head, 12);
+		System.out.println("======");
 		printLinkedList(llist.head);
 
 		scanner.close();
