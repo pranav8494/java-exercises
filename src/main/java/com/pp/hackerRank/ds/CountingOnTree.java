@@ -26,11 +26,11 @@ public class CountingOnTree {
     	for(int i=0; i < queries.length; i++){
     		int counter = 0;
     		if(queries[i].length == 4){
-    			List<Integer> path1 = findPath(queries[i][0], queries[i][1], treeAsMap);
-    			List<Integer> path2 = findPath(queries[i][2], queries[i][3], treeAsMap);
+    			List<Integer> path1 = findPath(queries[i][0], queries[i][1], 0, treeAsMap);
+    			List<Integer> path2 = findPath(queries[i][2], queries[i][3], 0, treeAsMap);
     			for(Integer a : path1){
     				for(Integer b : path2){
-    					if(a != b && c[a] == c[b]){
+    					if(a != b && c[a-1] == c[b-1]){
     						counter++;
     					}
     				}
@@ -43,16 +43,25 @@ public class CountingOnTree {
     }
 
     // complete findPath method and it should be solved.
-    private static ArrayList<Integer> findPath(int i, int j, TreeMultimap<Integer, Integer> treeAsMap) {
-		
-    	
-    	ArrayList<Integer> path = new ArrayList<Integer>();
-    	boolean isPathFound = false;
-    	
-    	while(!isPathFound){
-    		
-    	}
-    	
+	private static ArrayList<Integer> findPath(int i, int j, int lastNode, TreeMultimap<Integer, Integer> treeAsMap) {
+		ArrayList<Integer> path = new ArrayList<Integer>();
+
+		Collection<Integer> values = treeAsMap.get(i);
+		if (values.contains(j)) {
+			path.add(j);
+			path.add(i);
+		} else {
+			for (int temp : values) {
+				if (temp != lastNode) {
+					ArrayList<Integer> pathFromHere = findPath(temp, j, i, treeAsMap);
+					if (pathFromHere.size() > 0) {
+						path.addAll(pathFromHere);
+						path.add(i);
+						return path;
+					}
+				}
+			}
+		}
 		return path;
 	}
 
@@ -102,7 +111,6 @@ public class CountingOnTree {
         }
 
         int[] result = solve(c, tree, queries);
-        System.out.println(tree);
 
         for (int resultItr = 0; resultItr < result.length; resultItr++) {
             System.out.println(String.valueOf(result[resultItr]));
