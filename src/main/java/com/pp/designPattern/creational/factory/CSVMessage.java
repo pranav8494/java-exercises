@@ -6,7 +6,7 @@ public class CSVMessage implements Message {
 	
 	public CSVMessage(String fName, String lName) {
 		this.firstName = fName;
-		this.lastName = fName;
+		this.lastName = lName;
 	}
 	
 	@Override

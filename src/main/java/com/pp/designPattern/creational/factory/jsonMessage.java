@@ -5,7 +5,7 @@ public class jsonMessage implements Message {
 	
 	public jsonMessage(String fName, String lName) {
 		this.firstName = fName;
-		this.lastName = fName;
+		this.lastName = lName;
 	}
 	
 	@Override

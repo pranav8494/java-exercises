@@ -2,7 +2,7 @@ package com.pp.designPattern.creational.factory;
 
 import java.util.Scanner;
 
-public class Demo {
+public class DemoFactoryPattern {
 	
 	public static void main(String[] args){
 	
