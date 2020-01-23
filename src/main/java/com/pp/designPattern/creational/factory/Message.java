@@ -1,6 +1,6 @@
 package com.pp.designPattern.creational.factory;
 
-public interface Message {
+public abstract class Message {
 	
-	public String encodeMessage();
+	public abstract String encodeMessage();
 }

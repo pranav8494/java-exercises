@@ -4,10 +4,10 @@ public class MessageFactory {
 	
 	public Message getMessage(String messageType, String firstName, String lastName) {
 		
-		if("csv".equals(messageType)){
+		if("csv".equalsIgnoreCase(messageType)){
 			return new CSVMessage(firstName, lastName);
 		}
-		else if ("json".equals(messageType)){
+		else if ("json".equalsIgnoreCase(messageType)){
 			return new jsonMessage(firstName, lastName);
 		}
 		else{

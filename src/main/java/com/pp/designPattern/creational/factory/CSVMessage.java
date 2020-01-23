@@ -1,6 +1,6 @@
 package com.pp.designPattern.creational.factory;
 
-public class CSVMessage implements Message {
+public class CSVMessage extends Message {
 
 	String firstName, lastName;
 	

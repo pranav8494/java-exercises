@@ -1,6 +1,6 @@
 package com.pp.designPattern.creational.factory;
 
-public class jsonMessage implements Message {
+public class jsonMessage extends Message {
 	String firstName, lastName;
 	
 	public jsonMessage(String fName, String lName) {
